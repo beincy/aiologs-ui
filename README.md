@@ -1,6 +1,7 @@
 # aiologs-ui
 ### 配套日志记录组件aiologs所记录的日志的webui，提供浏览和搜索功能
 > 此套webui是针对aiologs日志系统开发的套件。如果你恰好使用aiologs并且指定了elaticsearch为日志仓库，那么你可以直接使用它
+> [aiologs](https://github.com/beincy/aiologs)是高性能的纯异步python日志组件
 #### 我们推荐在docker中使用。
 我们默认已经安装了docker
 1. 从当前项目中找到Dockerfile，把它拷贝到你的服务器上
