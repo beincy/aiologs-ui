@@ -25,7 +25,6 @@ function dateFormat(fmt, date) {
 
 class LogsTable extends Component {
     constructor(props) {
-        console.log("table rander")
         super(props);
         // this.state =props.dataSource
         this.state = {
@@ -76,14 +75,16 @@ class LogsTable extends Component {
             }
         }
         else if (this.state.beginTime) {
-            const ss = String(this.state.beginTime.getMonth() + 1)
-            const dd = String(this.state.beginTime.getDate())
-            es_index += `-${this.state.beginTime.getFullYear()}.${ss.length > 1 ? ss : ("0" + ss)}.${dd.length > 1 ? dd : ("0" + dd)}`
+            const begin = new Date(this.state.beginTime)
+            const ss = String(begin.getMonth() + 1)
+            const dd = String(begin.getDate())
+            es_index += `-${begin.getFullYear()}.${ss.length > 1 ? ss : ("0" + ss)}.${dd.length > 1 ? dd : ("0" + dd)}`
         }
         else if (this.state.endTime) {
-            const ss = String(this.state.endTime.getMonth() + 1)
-            const dd = String(this.state.endTime.getDate())
-            es_index += `-${this.state.endTime.getFullYear()}.${ss.length > 1 ? ss : ("0" + ss)}.${dd.length > 1 ? dd : ("0" + dd)}`
+            const endTime = new Date(this.state.endTime)
+            const ss = String(endTime.getMonth() + 1)
+            const dd = String(endTime.getDate())
+            es_index += `-${endTime.getFullYear()}.${ss.length > 1 ? ss : ("0" + ss)}.${dd.length > 1 ? dd : ("0" + dd)}`
         }
         else {
             es_index += '*'
@@ -121,10 +122,10 @@ class LogsTable extends Component {
         if (this.state.beginTime || this.state.endTime) {
             range = { "addtime": {} }
             if (this.state.beginTime) {
-                range.addtime.gte = this.state.beginTime
+                range.addtime.gte =this.state.beginTime.format('YYYY-MM-DDTHH:mm:ss')
             }
             if (this.state.endTime) {
-                range.addtime.lte = this.state.endTime
+                range.addtime.lte =this.state.endTime.format('YYYY-MM-DDTHH:mm:ss')
             }
         }
         // 项目
@@ -215,7 +216,7 @@ class LogsTable extends Component {
                 })
             }
         }).catch(() => {
-            message.error('接口跪了~~~~(>_<)~~~~');
+            message.error('无数据~~~~(>_<)~~~~');
             this.setState({
                 loading: false
             })

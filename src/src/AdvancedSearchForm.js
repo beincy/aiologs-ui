@@ -6,7 +6,6 @@ import { DatePicker } from 'antd';
 
 class AdvancedSearchForm extends Component {
     constructor(props) {
-        console.log("search rander")
         super(props);
         this.reprot = props.onChange
     }
@@ -65,7 +64,7 @@ class AdvancedSearchForm extends Component {
             const dd = String(begin.getDate())
             es_index += `-${begin.getFullYear()}.${ss.length > 1 ? ss : ("0" + ss)}.${dd.length > 1 ? dd : ("0" + dd)}`
         }
-        else if (this.state.endTime) {
+        else if (this.state.searchSql.endTime) {
             const endTime = new Date(this.state.searchSql.endTime)
             const ss = String(endTime.getMonth() + 1)
             const dd = String(endTime.getDate())
@@ -567,6 +566,8 @@ class AdvancedSearchForm extends Component {
     onStartChange = value => {
         const searchSql = { ...this.state.searchSql }
         searchSql.beginTime = value
+        console.log(value)
+        console.log(new Date(value))
         this.setState({
             searchSql
         });
