@@ -34,9 +34,7 @@ class App extends Component {
     })
   }
   render() {
-    console.log("app render")
     const {searchSql,searchKey} = this.state
-    console.log(searchSql)
     return (
       <div className="App">
         <WrappedAdvancedSearchForm onChange={(v,n) => this.onSearchChange(v,n)} key={searchKey} />
